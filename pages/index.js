@@ -9,16 +9,22 @@ const image =
   'https://images-na.ssl-images-amazon.com/images/I/818NtgncwLL._SL1500_.jpg'
 
 const Index = ({ movies }) => {
-  const handlePosterClick = async () => {
-    const res = await fetch('/api/movies')
-    const data = await res.json()
+  const handlePosterClick = async ({ magnet }) => {
+    window.location = magnet
   }
 
   return (
     <div>
-      <List photoGrid onItemClick={(e) => console.log(e)}>
+      <List photoGrid>
         {movies.map(({ posterUrl, ...rest }) => {
-          return <Poster key={posterUrl} src={posterUrl} {...rest} />
+          return (
+            <Poster
+              key={posterUrl}
+              src={posterUrl}
+              {...rest}
+              onClick={handlePosterClick}
+            />
+          )
         })}
       </List>
     </div>

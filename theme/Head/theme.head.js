@@ -15,6 +15,9 @@ export default () => (
   <>
     <style jsx global>
       {`    
+      body {
+        background-color: #07050D;
+      }
       
           ${formResets}
           ${typographyResets}
