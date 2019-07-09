@@ -8,10 +8,14 @@
     "build": "next build",
     "now-build": "next build",
     "dev": "next start",
+    "gen:css": "node theme-gen.js",
     "lint:fix": "eslint ./src --fix",
     "lint:check": "eslint ./src"
   },
   "dependencies": {
+    "@zeit/next-css": "^1.0.1",
+    "fs": "^0.0.1-security",
+    "glob": "^7.1.4",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^9.0.0",
     "react": "^16.8.6",

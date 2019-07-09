@@ -4,7 +4,7 @@ Fonts available:
   Quicksand
   Roboto
 */
-export default `
+exports.default = `
 h1 {
   font-family: Roboto;
   font-style: normal;
