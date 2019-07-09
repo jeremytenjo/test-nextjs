@@ -1,4 +1,4 @@
-export default `
+exports.default = `
 @media only screen and (min-width: 1200px) {
   /* width */
   ::-webkit-scrollbar {

@@ -1,4 +1,4 @@
-export default `
+exports.default = `
   ::-moz-selection {
     color: white;
     background: var(--color-secondary);

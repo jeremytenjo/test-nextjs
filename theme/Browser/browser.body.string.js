@@ -1,4 +1,4 @@
-export default `
+exports.default = `
 body {
   margin: 0;
   padding: 0;

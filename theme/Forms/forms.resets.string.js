@@ -1,4 +1,4 @@
-export default `
+exports.default = `
 input {
   font-size: 16px;
   border: none;
