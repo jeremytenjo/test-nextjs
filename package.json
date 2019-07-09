@@ -6,17 +6,17 @@
   "scripts": {
     "start": "next",
     "build": "next build",
+    "now-build": "next build",
     "dev": "next start",
     "lint:fix": "eslint ./src --fix",
     "lint:check": "eslint ./src"
   },
   "dependencies": {
-    "@tenjojeremy/eslint-config": "^1.7.0",
-    "@tenjojeremy/web-toolkit": "^3.72.0",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^9.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "styled-components": "^4.3.2",
     "torrent-search-api": "^2.0.9"
   }
 }
