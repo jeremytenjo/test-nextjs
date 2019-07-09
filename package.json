@@ -8,7 +8,7 @@
     "build": "next build",
     "now-build": "next build",
     "dev": "next start",
-    "gen:css": "node theme-gen.js",
+    "gen:css": "node theme/theme-gen.js",
     "lint:fix": "eslint ./src --fix",
     "lint:check": "eslint ./src"
   },
