@@ -1,6 +1,5 @@
-import React from 'react'
 import App, { Container } from 'next/app'
-import Head from 'next/head'
+import Head from '../constants/head'
 import Core from '../templates/core'
 import '../theme/theme.css'
 
@@ -17,10 +16,7 @@ class MyApp extends App {
 
     return (
       <>
-        <Head>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <meta charSet="utf-8" />
-        </Head>
+        <Head />
         <Container>
           <Core>
             <Component {...pageProps} />

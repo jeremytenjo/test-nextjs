@@ -9,10 +9,7 @@ const image =
   'https://images-na.ssl-images-amazon.com/images/I/818NtgncwLL._SL1500_.jpg'
 
 const Index = ({ movies = [] }) => {
-  const handlePosterClick = async () => {
-    const res = await fetch('/api/movies')
-    const data = await res.json()
-  }
+  const handlePosterClick = async ({ magnet }) => {}
 
   return (
     <div>
@@ -21,10 +18,7 @@ const Index = ({ movies = [] }) => {
           return <Poster key={posterUrl} src={posterUrl} {...rest} />
         })}
       </List> */}
-
-      {movies.map(({ posterUrl, ...rest }) => {
-        return <img key={posterUrl} src={posterUrl} />
-      })}
+      <h3> Try Me </h3>
     </div>
   )
 }

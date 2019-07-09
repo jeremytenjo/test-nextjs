@@ -6,6 +6,7 @@
   "scripts": {
     "start": "next",
     "deploy": "firebase deploy --only functions && now",
+    "build:test": "next build",
     "gen:css": "node theme/theme-gen.js",
     "lint:fix": "eslint ./src --fix",
     "lint:check": "eslint ./src"

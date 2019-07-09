@@ -5,9 +5,12 @@ let fileString = ''
 
 glob(`theme/**/*.string.js`, async function(err, files) {
   files.map(async (file) => {
+    let fileName = file.split('/')
+    fileName.shift()
+    fileName = fileName.join('/')
+
     try {
-      const mod = require(`./${file}`)
-      console.log(mod)
+      const mod = require(`./${fileName}`)
       fileString += mod.default
     } catch (error) {
       console.log(error)
