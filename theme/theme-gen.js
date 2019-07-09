@@ -4,7 +4,6 @@ const glob = require('glob')
 let fileString = ''
 
 glob(`theme/**/*.string.js`, async function(err, files) {
-  console.log(files)
   files.map(async (file) => {
     try {
       const mod = require(`./${file}`)
