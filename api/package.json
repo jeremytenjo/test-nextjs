@@ -3,7 +3,7 @@
   "description": "Cloud Functions for Firebase",
   "private": true,
   "engines": {
-    "node": "12"
+    "node": "10"
   },
   "scripts": {
     "start": "firebase serve --only functions",
@@ -17,6 +17,7 @@
     "express": "^4.17.1",
     "firebase-admin": "^8.2.0",
     "firebase-functions": "3.0.2",
+    "node-fetch": "^2.6.0",
     "torrent-search-api": "^2.0.9"
   }
 }

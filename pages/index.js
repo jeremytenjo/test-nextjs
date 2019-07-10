@@ -2,8 +2,8 @@ import fetch from 'isomorphic-unfetch'
 import Router from 'next/router'
 import baserUrl from '../constants/baseUrl'
 import getLatestMovies from '../functions/api/getLatestMovies'
-// import Poster from '@tenjojeremy/web-toolkit/build/Data-Display/Cards/Poster/Ui/React/Styles/1/poster.1.index.js'
-// import List from '@tenjojeremy/web-toolkit/build/Data-Display/List/Ui/React/list.index.js'
+import Poster from '@tenjo/web-features/build/Data-Display/Cards/Poster/Ui/React/Styles/1/poster.1.index.js'
+import List from '@tenjo/web-features/build/Data-Display/List/Ui/React/list.index.js'
 
 const image =
   'https://images-na.ssl-images-amazon.com/images/I/818NtgncwLL._SL1500_.jpg'
@@ -11,23 +11,25 @@ const image =
 const Index = ({ movies = [] }) => {
   console.log(movies)
 
-  const handlePosterClick = async ({ magnet }) => {}
+  const handlePosterClick = async ({ magnet }) => {
+    window.location = magnet
+  }
 
   return (
     <div>
-      {/* <List photoGrid onItemClick={(e) => console.log(e)}>
-        {movies.map(({ posterUrl, ...rest }) => {
-          return (
-            <Poster
-              key={posterUrl}
-              src={posterUrl}
-              {...rest}
-              onClick={handlePosterClick}
-            />
-          )
-        })}
-      </List> */}
-      <h3> Try Me </h3>
+      <List grid>
+        {Array.isArray(movies) &&
+          movies.map(({ posterUrl, ...rest }) => {
+            return (
+              <Poster
+                key={posterUrl}
+                src={posterUrl}
+                {...rest}
+                onClick={handlePosterClick}
+              />
+            )
+          })}
+      </List>
     </div>
   )
 }

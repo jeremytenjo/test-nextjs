@@ -2,6 +2,7 @@ const functions = require('firebase-functions')
 const cors = require('cors')
 const express = require('express')
 const TorrentSearchApi = require('torrent-search-api')
+const fetch = require('node-fetch')
 
 TorrentSearchApi.enableProvider('1337x')
 const app = express()
@@ -25,7 +26,6 @@ app.use(cors({ origin: true }))
 
 // Add middleware to authenticate requests
 app.use(function(req, res, next) {
-  console.log('HERE!')
   let apiSecKey = req.body.apiSecKey
   if (apiSecKey === secKey) {
     next()
@@ -56,11 +56,10 @@ app.post('/getEpisodes', async (req, res, next) => {
 })
 
 app.post('/getLatestMovies', async (req, res, next) => {
-  res.json([])
-
   let resultLimit = 10
 
   const movies = await TorrentSearchApi.search('1080', 'Movies', resultLimit)
+
   let moviesList = await movies.map(async (serie, index) => {
     let magnet = await TorrentSearchApi.getMagnet(serie)
     serie.magnet = magnet
@@ -69,7 +68,7 @@ app.post('/getLatestMovies', async (req, res, next) => {
 
   let data = await Promise.all(moviesList)
 
-  let latestMovies = data.map(async (movie) => {
+  let latestMovies = await data.map(async (movie) => {
     let formatTitle = movie.title.replace(/ *\([^)]*\) */g, '')
     formatTitle = formatTitle.replace(/ *\[[^\]]*]/g, '')
 
@@ -92,7 +91,9 @@ app.post('/getLatestMovies', async (req, res, next) => {
       : null
   })
 
-  res.json(await Promise.all(latestMovies))
+  const resData = await Promise.all(latestMovies)
+
+  res.json(resData)
 })
 
 app.post('/', async (req, res, next) => {
