@@ -17,11 +17,12 @@ const Index = ({ movies = [] }) => {
     <div>
       <List grid>
         {Array.isArray(movies) &&
-          movies.map(({ posterUrl, ...rest }) => {
+          movies.map(({ posterUrl, title, ...rest }) => {
             return (
               <Poster
                 key={posterUrl}
                 src={posterUrl}
+                alt={title}
                 {...rest}
                 onClick={handlePosterClick}
               />
@@ -34,6 +35,7 @@ const Index = ({ movies = [] }) => {
 
 Index.getInitialProps = async function() {
   const movies = await getLatestMovies()
+  console.log(movies)
 
   return {
     movies

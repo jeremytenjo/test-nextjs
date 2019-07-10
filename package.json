@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "next",
-    "deploy": "firebase deploy --only functions && now",
+    "deploy": "firebase deploy --only functions && now && gpush",
     "build:test": "next build",
     "gen:css": "node theme/theme-gen.js",
     "lint:fix": "eslint ./ --fix",
