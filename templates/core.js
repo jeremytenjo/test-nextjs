@@ -18,7 +18,12 @@ const HeaderFooter = ({ children }) => {
 
   return (
     <Wrapper>
-      <Tabs data={DataTabs2} router={router} pathname={router.pathname} />
+      <Tabs
+        style={{ padding: '10px 0' }}
+        data={DataTabs2}
+        router={router}
+        pathname={router.pathname}
+      />
       {children}
       {/* <TextField /> */}
     </Wrapper>

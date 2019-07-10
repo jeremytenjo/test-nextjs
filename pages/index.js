@@ -9,8 +9,6 @@ const image =
   'https://images-na.ssl-images-amazon.com/images/I/818NtgncwLL._SL1500_.jpg'
 
 const Index = ({ movies = [] }) => {
-  console.log(movies)
-
   const handlePosterClick = async ({ magnet }) => {
     window.location = magnet
   }

@@ -58,7 +58,7 @@ app.post('/getEpisodes', async (req, res, next) => {
 app.post('/getLatestMovies', async (req, res, next) => {
   let resultLimit = 10
 
-  const movies = await TorrentSearchApi.search('1080', 'Movies', resultLimit)
+  const movies = await TorrentSearchApi.search('2019', 'Movies', resultLimit)
 
   let moviesList = await movies.map(async (serie, index) => {
     let magnet = await TorrentSearchApi.getMagnet(serie)
@@ -73,7 +73,8 @@ app.post('/getLatestMovies', async (req, res, next) => {
     formatTitle = formatTitle.replace(/ *\[[^\]]*]/g, '')
 
     let seriesInfo = await getMovieInfo(formatTitle)
-    let posterUrl = ''
+    let posterUrl =
+      'https://s3-ap-southeast-1.amazonaws.com/popcornsg/placeholder-movieimage.png'
 
     if (seriesInfo.results[0]) {
       posterUrl = `http://image.tmdb.org/t/p/w185/${
