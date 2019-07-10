@@ -1,17 +1,11 @@
 const functions = require('firebase-functions')
 const cors = require('cors')
 const express = require('express')
-const curl = new (require('curl-request'))()
 const TorrentSearchApi = require('torrent-search-api')
 
 TorrentSearchApi.enableProvider('1337x')
 const app = express()
 const secKey = 'newhouse'
-const qbitTorrentCred = {
-  host: 'http://192.168.0.10:8080',
-  username: 'admin',
-  password: 'password'
-}
 
 const getMovieInfo = async (query) => {
   try {
@@ -31,6 +25,7 @@ app.use(cors({ origin: true }))
 
 // Add middleware to authenticate requests
 app.use(function(req, res, next) {
+  console.log('HERE!')
   let apiSecKey = req.body.apiSecKey
   if (apiSecKey === secKey) {
     next()
@@ -41,47 +36,6 @@ app.use(function(req, res, next) {
 
 app.post('/auth', async (req, res, next) => {
   res.json('true')
-})
-
-app.post('/startDownload', async (req, res, next) => {
-  let type = req.body.type
-  let magnet = req.body.magnet
-  let savepath =
-    type === 'movie'
-      ? 'C:/Users/jeremy/Videos/Movies'
-      : 'C:/Users/jeremy/Videos/TV Shows'
-
-  // Login
-  curl
-    .setHeaders([`Referer: ${qbitTorrentCred.host}`])
-    .setBody(
-      'username=' +
-        qbitTorrentCred.username +
-        '&password=' +
-        qbitTorrentCred.password
-    )
-    .post(qbitTorrentCred.host + '/login')
-    .then(({ statusCode, body, headers }) => {
-      let currentCookie = headers['set-cookie'][0]
-      currentCookie = currentCookie.split(';')[0]
-
-      // Download
-      curl
-        .setHeaders([
-          `Referer: ${qbitTorrentCred.host}`,
-          'Content-Type: application/x-www-form-urlencoded',
-          'Cookie: ' + currentCookie
-        ])
-        .setBody('urls=' + magnet + '&savepath=' + savepath)
-        .post(qbitTorrentCred.host + '/command/download')
-        .then(({ statusCode, body, headers }) => {
-          res.json('success')
-        })
-    })
-    .catch((e) => {
-      console.log(e)
-      res.json('fail')
-    })
 })
 
 //Routes
@@ -102,6 +56,8 @@ app.post('/getEpisodes', async (req, res, next) => {
 })
 
 app.post('/getLatestMovies', async (req, res, next) => {
+  res.json([])
+
   let resultLimit = 10
 
   const movies = await TorrentSearchApi.search('1080', 'Movies', resultLimit)
