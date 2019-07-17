@@ -7,10 +7,12 @@
     "start": "next",
     "deploy": "firebase deploy --only functions && now && gpush",
     "build:test": "next build",
-    "gen:css": "node theme/theme-gen.js",
+    "build:css": "node theme/theme-gen.js",
     "lint:fix": "eslint ./ --fix",
-    "lint:check": "eslint ./"
+    "lint:check": "eslint ./",
+    "watch": "watch 'npm run build:css' ./theme"
   },
+
   "dependencies": {
     "@tenjo/eslint-config": "^1.8.0",
     "@tenjo/web-features": "^3.73.0",
@@ -21,9 +23,11 @@
     "isomorphic-unfetch": "^3.0.0",
     "next": "^9.0.0",
     "next-offline": "^4.0.2",
+    "node-emoji": "^1.10.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "styled-components": "^4.3.2",
-    "torrent-search-api": "^2.0.9"
+    "torrent-search-api": "^2.0.9",
+    "watch": "^1.0.2"
   }
 }

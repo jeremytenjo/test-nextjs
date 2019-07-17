@@ -1,5 +1,6 @@
 const fs = require('fs')
 const glob = require('glob')
+const emoji = require('node-emoji')
 
 let fileString = ''
 
@@ -20,6 +21,6 @@ glob(`theme/**/*.string.js`, async function(err, files) {
   // 2. create snipet file and attach created snippets
   fs.writeFile('theme/theme.css', fileString, function(err) {
     if (err) throw err
-    console.log('Snippet file created successfully :)')
+    console.log(`${emoji.get('white_check_mark')}  Theme file created`)
   })
 })
